@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Red Maipo Aventura – Fichas de Iniciativas v3.0</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --t:   #1E1108;
+    --a:   #F5EDD8;
+    --o:   #C4862A;
+    --ol:  #E8A83A;
+    --v:   #2E4D30;
+    --c:   #1A3A52;
+    --n:   #F0EDE6;
+    --r:   #C23F1A;
+    --bg:  #F2EEE5;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: #ccc;
+    font-family: 'Barlow', sans-serif;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #555;
+    text-transform: uppercase;
+    padding: 8px 0;
+  }
+
+  /* ─── CARD ─── */
+  .card {
+    width: 794px;
+    background: var(--bg);
+    display: grid;
+    grid-template-columns: 200px 1fr 180px;
+    min-height: 220px;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+  }
+
+  /* Left accent bar */
+  .card-left {
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+  }
+  .card-left::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; right: -50px;
+    width: 150px; height: 150px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  /* color themes */
+  .theme-gold   .card-left { background: var(--t); }
+  .theme-verde  .card-left { background: var(--v); }
+  .theme-cielo  .card-left { background: var(--c); }
+  .theme-rojo   .card-left { background: var(--r); }
+
+  .card-icon {
+    font-size: 38px;
+    line-height: 1;
+  }
+
+  .card-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--a);
+    line-height: 1.15;
+  }
+  .card-name em { font-style: italic; }
+
+  .card-price-big {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--ol);
+    line-height: 1;
+  }
+  .card-price-label {
+    font-size: 9px;
+    color: rgba(245,237,216,0.5);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* Center content */
+  .card-center {
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    border-right: 1px solid rgba(0,0,0,0.07);
+  }
+
+  .card-tagline {
+    font-family: 'Playfair Display', serif;
+    font-size: 14.5px;
+    font-style: italic;
+    color: #3a3028;
+    line-height: 1.4;
+    border-left: 3px solid var(--o);
+    padding-left: 10px;
+  }
+  .theme-verde .card-tagline { border-left-color: var(--v); }
+  .theme-cielo .card-tagline { border-left-color: var(--c); }
+  .theme-rojo  .card-tagline { border-left-color: var(--r); }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  .micro-section {}
+  .micro-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 8.5px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--o);
+    margin-bottom: 5px;
+  }
+  .theme-verde .micro-label { color: #5a9960; }
+  .theme-cielo .micro-label { color: #4a7a9b; }
+  .theme-rojo  .micro-label { color: #d97050; }
+
+  .itinerary-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .step {
+    display: flex;
+    gap: 7px;
+    align-items: flex-start;
+    font-size: 10px;
+    color: #4a3c2e;
+    line-height: 1.4;
+    font-weight: 400;
+  }
+  .step-icon { font-size: 11px; flex-shrink: 0; margin-top: 1px; }
+  .step-time {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--o);
+    flex-shrink: 0;
+    min-width: 38px;
+  }
+  .theme-verde .step-time { color: #5a9960; }
+  .theme-cielo .step-time { color: #4a7a9b; }
+  .theme-rojo  .step-time { color: #d97050; }
+
+  .includes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .include-item {
+    font-size: 10px;
+    color: #4a3c2e;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .include-item::before {
+    content: '✓';
+    color: var(--o);
+    font-weight: 700;
+    font-size: 10px;
+    flex-shrink: 0;
+  }
+  .theme-verde .include-item::before { color: #5a9960; }
+  .theme-cielo .include-item::before { color: #4a7a9b; }
+  .theme-rojo  .include-item::before { color: #d97050; }
+
+  .diff-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .pill {
+    font-size: 9px;
+    font-weight: 600;
+    background: rgba(196,134,42,0.12);
+    color: var(--o);
+    padding: 3px 8px;
+    letter-spacing: 0.3px;
+  }
+  .theme-verde .pill { background: rgba(46,77,48,0.12); color: #4a8050; }
+  .theme-cielo .pill { background: rgba(26,58,82,0.12); color: #3a6a90; }
+  .theme-rojo  .pill { background: rgba(194,63,26,0.10); color: #b03515; }
+
+  /* Right sidebar */
+  .card-right {
+    padding: 18px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: white;
+  }
+
+  .mini-block {}
+  .mini-label {
+    font-size: 7.5px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 4px;
+  }
+
+  .target-info {
+    font-size: 10px;
+    color: #3a3028;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  .ops-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+  .ops-item {
+    background: var(--n);
+    padding: 6px 7px;
+  }
+  .ops-val {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--t);
+    line-height: 1;
+  }
+  .ops-key {
+    font-size: 8px;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+  }
+
+  .commission-box {
+    background: var(--t);
+    padding: 8px 10px;
+    margin-top: auto;
+  }
+  .comm-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--ol);
+    line-height: 1;
+  }
+  .comm-label {
+    font-size: 8.5px;
+    color: rgba(245,237,216,0.55);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* ─── DIVIDER ─── */
+</style>
+</head>
+<body>
+
+<h1>Red Maipo Aventura · Fichas de Iniciativas 2025–2026 · v3.0</h1>
+
+<!-- 1. Full Day Maipo -->
+<div class="card theme-gold">
+  <div class="card-left">
+    <div class="card-icon">🏞</div>
+    <div class="card-name">Full Day<br><em>Maipo</em></div>
+    <div>
+      <div class="card-price-big">USD 90–140</div>
+      <div class="card-price-label">por persona</div>
+    </div>
+  </div>
+  <div class="card-center">
+    <div class="card-tagline">"Embalse turquesa, montaña andina, cultura y aventura — todo en un día perfectamente coordinado por especialistas locales."</div>
+    <div class="two-col">
+      <div class="micro-section">
+        <div class="micro-label">Itinerario</div>
+        <div class="itinerary-steps">
+          <div class="step"><span class="step-time">08:00</span>Pickup hotel / punto central Santiago</div>
+          <div class="step"><span class="step-time">10:00</span>Embalse El Yeso (2.500 m) — laguna turquesa</div>
+          <div class="step"><span class="step-time">12:00</span>Trekking panorámico con guía certificado</div>
+          <div class="step"><span class="step-time">14:00</span>Almuerzo tradicional chileno</div>
+          <div class="step"><span class="step-time">15:30</span>Rafting Río Maipo (opcional, mín. 6 pax)</div>
+          <div class="step"><span class="step-time">18:30</span>Regreso a Santiago</div>
+        </div>
+      </div>
+      <div class="micro-section">
+        <div class="micro-label">Incluye</div>
+        <div class="includes-list">
+          <div class="include-item">Transporte roundtrip desde Santiago</div>
+          <div class="include-item">Guía bilingüe certificado (ES/EN)</div>
+          <div class="include-item">Almuerzo tradicional</div>
+          <div class="include-item">Seguro de accidentes</div>
+          <div class="include-item">Grupos pequeños (máx. 12 pax)</div>
+          <div class="include-item">Rafting opcional (+costo)</div>
+        </div>
+      </div>
+    </div>
+    <div class="diff-pills">
+      <span class="pill">Multi-proveedor coordinado</span>
+      <span class="pill">Grupos pequeños</span>
+      <span class="pill">Flexible según grupo</span>
+      <span class="pill">Servicio privado disponible</span>
+    </div>
+  </div>
+  <div class="card-right">
+    <div class="mini-block">
+      <div class="mini-label">Público objetivo</div>
+      <div class="target-info">Turistas internacionales 18–55 años. Europeos, norteamericanos y latinoamericanos. Valoran profesionalismo y estándares internacionales.</div>
+    </div>
+    <div class="mini-block">
+      <div class="mini-label">Datos operativos</div>
+      <div class="ops-grid">
+        <div class="ops-item"><div class="ops-val">1 día</div><div class="ops-key">Duración</div></div>
+        <div class="ops-item"><div class="ops-val">6–12</div><div class="ops-key">Pax grupo</div></div>
+        <div class="ops-item"><div class="ops-val">Todo el año</div><div class="ops-key">Temporada</div></div>
+        <div class="ops-item"><div class="ops-val">ES / EN</div><div class="ops-key">Idiomas</div></div>
+      </div>
+    </div>
+    <div class="commission-box">
+      <div class="comm-num">15–20%</div>
+      <div class="comm-label">Comisión operador</div>
+    </div>
+  </div>
+</div>
+
+<!-- 2. Tour Patrimonial -->
+<div class="card theme-gold">
+  <div class="card-left">
+    <div class="card-icon">🏛</div>
+    <div class="card-name">Tour<br><em>Patrimonial</em></div>
+    <div>
+      <div class="card-price-big">USD 60–80</div>
+      <div class="card-price-label">por persona · medio día</div>
+    </div>
+  </div>
+  <div class="card-center">
+    <div class="card-tagline">"El Cajón que no conocen los turistas: el tren trasandino, el hospital histórico y la memoria minera de la Cordillera."</div>
+    <div class="two-col">
+      <div class="micro-section">
+        <div class="micro-label">Itinerario</div>
+        <div class="itinerary-steps">
+          <div class="step"><span class="step-time">09:00</span>Pickup Santiago</div>
+          <div class="step"><span class="step-time">10:00</span>Ferrocarril Trasandino (patrimonio histórico)</div>
+          <div class="step"><span class="step-time">11:00</span>Hospital histórico San José de Maipo</div>
+          <div class="step"><span class="step-time">12:00</span>Recorrido patrimonio minero + artesanos locales</div>
+          <div class="step"><span class="step-time">13:00</span>Almuerzo típico con productores locales</div>
+          <div class="step"><span class="step-time">14:30</span>Regreso Santiago</div>
+        </div>
+      </div>
+      <div class="micro-section">
+        <div class="micro-label">Incluye</div>
+        <div class="includes-list">
+          <div class="include-item">Transporte roundtrip</div>
+          <div class="include-item">Guía especializado patrimonio cultural</div>
+          <div class="include-item">Entradas a sitios patrimoniales</div>
+          <div class="include-item">Material educativo del recorrido</div>
+          <div class="include-item">Almuerzo con productores locales</div>
+          <div class="include-item">Seguro de accidentes</div>
+        </div>
+      </div>
+    </div>
+    <div class="diff-pills">
+      <span class="pill">Historia andina auténtica</span>
+      <span class="pill">Guía especializado</span>
+      <span class="pill">Turismo cultural premium</span>
+      <span class="pill">Economía local directa</span>
+    </div>
+  </div>
+  <div class="card-right">
+    <div class="mini-block">
+      <div class="mini-label">Público objetivo</div>
+      <div class="target-info">Viajeros culturales premium 40–70 años. Norteamericanos, europeos (especialmente UK, Alemania). Conexión cultural/patrimonial profunda.</div>
+    </div>
+    <div class="mini-block">
+      <div class="mini-label">Datos operativos</div>
+      <div class="ops-grid">
+        <div class="ops-item"><div class="ops-val">½ día</div><div class="ops-key">Duración</div></div>
+        <div class="ops-item"><div class="ops-val">4–12</div><div class="ops-key">Pax grupo</div></div>
+        <div class="ops-item"><div class="ops-val">Todo el año</div><div class="ops-key">Temporada</div></div>
+        <div class="ops-item"><div class="ops-val">ES / EN</div><div class="ops-key">Idiomas</div></div>
+      </div>
+    </div>
+    <div class="commission-box">
+      <div class="comm-num">15%</div>
+      <div class="comm-label">Comisión operador</div>
+    </div>
+  </div>
+</div>
+
+<!-- 3. Cabalgata con Sentido -->
+<div class="card theme-gold">
+  <div class="card-left">
+    <div class="card-icon">🐴</div>
+    <div class="card-name">Cabalgata<br><em>con Sentido</em></div>
+    <div>
+      <div class="card-price-big">USD 780</div>
+      <div class="card-price-label">por persona · 3D/2N</div>
+    </div>
+  </div>
+  <div class="card-center">
+    <div class="card-tagline">"Experimenta los Andes como los arrieros locales. No es montar a caballo — es vivir 3 días auténticos que ningún tour masivo puede replicar."</div>
+    <div class="two-col">
+      <div class="micro-section">
+        <div class="micro-label">Itinerario 3 días</div>
+        <div class="itinerary-steps">
+          <div class="step"><span class="step-time">DÍA 1</span>El Encuentro: ritual bienvenida arriero + cabalgata Los Azules</div>
+          <div class="step"><span class="step-time">Noche</span>Campamento alta montaña + asado + tour astronómico</div>
+          <div class="step"><span class="step-time">DÍA 2</span>La Inmersión: ruta histórica + parada termas rústicas</div>
+          <div class="step"><span class="step-time">Noche</span>Relatos al fuego + desconexión total</div>
+          <div class="step"><span class="step-time">DÍA 3</span>El Retorno: desayuno arriero + regreso + Certificado Arriero Honorario</div>
+        </div>
+      </div>
+      <div class="micro-section">
+        <div class="micro-label">Incluye</div>
+        <div class="includes-list">
+          <div class="include-item">Caballos seleccionados según jinete</div>
+          <div class="include-item">Arrieros auténticos como protagonistas</div>
+          <div class="include-item">Campamento con carpas expedición</div>
+          <div class="include-item">Todas las comidas estilo arriero gourmet</div>
+          <div class="include-item">Tour astronómico + telescopio profesional</div>
+          <div class="include-item">Seguro completo + certificado simbólico</div>
+        </div>
+      </div>
+    </div>
+    <div class="diff-pills">
+      <span class="pill">Ritual selección de caballo</span>
+      <span class="pill">Arrieros como protagonistas</span>
+      <span class="pill">Astronomía integrada</span>
+      <span class="pill">Autenticidad sin sacrificar confort</span>
+    </div>
+  </div>
+  <div class="card-right">
+    <div class="mini-block">
+      <div class="mini-label">Público objetivo</div>
+      <div class="target-info">"Mindful Adventurer" 30–55 años. USA 40% / Canada 15% / UK 15% / Alemania 15%. Buscan autenticidad cultural y conexión humana profunda.</div>
+    </div>
+    <div class="mini-block">
+      <div class="mini-label">Datos operativos</div>
+      <div class="ops-grid">
+        <div class="ops-item"><div class="ops-val">3D/2N</div><div class="ops-key">Duración</div></div>
+        <div class="ops-item"><div class="ops-val">4–8</div><div class="ops-key">Pax grupo</div></div>
+        <div class="ops-item"><div class="ops-val">Oct–Abr</div><div class="ops-key">Temporada</div></div>
+        <div class="ops-item"><div class="ops-val">ES / EN / DE</div><div class="ops-key">Idiomas</div></div>
+      </div>
+    </div>
+    <div class="commission-box">
+      <div class="comm-num">15–20%</div>
+      <div class="comm-label">Comisión operador</div>
+    </div>
+  </div>
+</div>
+
+<!-- 4. La Vida Outdoor 2D -->
+<div class="card theme-rojo">
+  <div class="card-left">
+    <div class="card-icon">🧗</div>
+    <div class="card-name"><em>La Vida</em><br>Outdoor 2D</div>
+    <div>
+      <div class="card-price-big">USD 420–480</div>
+      <div class="card-price-label">por persona · 2D/1N</div>
+    </div>
+  </div>
+  <div class="card-center">
+    <div class="card-tagline">"48 horas de máxima diversidad outdoor. Para quienes no quieren elegir solo una actividad — todo coordinado sin que muevan un dedo."</div>
+    <div class="two-col">
+      <div class="micro-section">
+        <div class="micro-label">Itinerario</div>
+        <div class="itinerary-steps">
+          <div class="step"><span class="step-time">DÍA 1</span>Traslado Cajón + SPA/Termas naturales + check-in lodge boutique</div>
+          <div class="step"><span class="step-time">20:00</span>Cena gourmet + briefing técnico DÍA 2</div>
+          <div class="step"><span class="step-time">DÍA 2</span>Trekking o Escalada (Piedra Romel / Las Palestras)</div>
+          <div class="step"><span class="step-time">11:30</span>Almuerzo de campo + storytelling geológico</div>
+          <div class="step"><span class="step-time">13:30</span>Rafting Río Maipo (verano) o Termas (invierno)</div>
+          <div class="step"><span class="step-time">16:30</span>Regreso Santiago</div>
+        </div>
+      </div>
+      <div class="micro-section">
+        <div class="micro-label">Incluye</div>
+        <div class="includes-list">
+          <div class="include-item">Transporte premium roundtrip</div>
+          <div class="include-item">1 noche lodge boutique con SPA</div>
+          <div class="include-item">Guías especialistas por actividad</div>
+          <div class="include-item">Todas las comidas (2 almuerzos, 1 cena, 1 desayuno)</div>
+          <div class="include-item">Equipamiento técnico completo</div>
+          <div class="include-item">Assessment previo + seguro aventura</div>
+        </div>
+      </div>
+    </div>
+    <div class="diff-pills">
+      <span class="pill">Assessment personalizado</span>
+      <span class="pill">Storytelling geológico integrado</span>
+      <span class="pill">Balance aventura + wellness</span>
+      <span class="pill">Versión invierno disponible</span>
+    </div>
+  </div>
+  <div class="card-right">
+    <div class="mini-block">
+      <div class="mini-label">Público objetivo</div>
+      <div class="target-info">Aventureros brasileños ABC1, 22–60 años. Buscan maximizar experiencias en tiempo limitado. Valoran coordinación profesional total. Experiencias instagrameables.</div>
+    </div>
+    <div class="mini-block">
+      <div class="mini-label">Datos operativos</div>
+      <div class="ops-grid">
+        <div class="ops-item"><div class="ops-val">2D/1N</div><div class="ops-key">Duración</div></div>
+        <div class="ops-item"><div class="ops-val">4–10</div><div class="ops-key">Pax grupo</div></div>
+        <div class="ops-item"><div class="ops-val">Todo el año</div><div class="ops-key">Temporada</div></div>
+        <div class="ops-item"><div class="ops-val">ES / PT / EN</div><div class="ops-key">Idiomas</div></div>
+      </div>
+    </div>
+    <div class="commission-box">
+      <div class="comm-num">15–20%</div>
+      <div class="comm-label">Comisión operador</div>
+    </div>
+  </div>
+</div>
+
+<!-- 5. Rollin Las Melosas -->
+<div class="card theme-verde">
+  <div class="card-left">
+    <div class="card-icon">🛴</div>
+    <div class="card-name">Rollin<br><em>Las Melosas</em></div>
+    <div>
+      <div class="card-price-big">USD 80–100</div>
+      <div class="card-price-label">por persona</div>
+    </div>
+  </div>
+  <div class="card-center">
+    <div class="card-tagline">"La ruta Las Melosas en ruedas: e-scooter, bici o longboard, con paradas fotográficas en los puntos más icónicos de los Andes."</div>
+    <div class="two-col">
+      <div class="micro-section">
+        <div class="micro-label">Concepto</div>
+        <div class="itinerary-steps">
+          <div class="step"><span class="step-time">Formato</span>Experiencia rodante híbrida — 3 modalidades a elección</div>
+          <div class="step"><span class="step-time">Ruta</span>Camino Las Melosas, paisaje andino icónico</div>
+          <div class="step"><span class="step-time">5 stops</span>Paradas fotográficas curadas en miradores especiales</div>
+          <div class="step"><span class="step-time">Combina</span>Desplazamiento + trekking breve + fotografía</div>
+        </div>
+      </div>
+      <div class="micro-section">
+        <div class="micro-label">Modalidades disponibles</div>
+        <div class="includes-list">
+          <div class="include-item">E-scooter eléctrico</div>
+          <div class="include-item">Bicicleta convencional o e-bike</div>
+          <div class="include-item">Longboard (terreno habilitado)</div>
+          <div class="include-item">Guía y equipamiento incluidos</div>
+          <div class="include-item">Paradas fotográficas curadas</div>
+          <div class="include-item">Seguro de actividad</div>
+        </div>
+      </div>
+    </div>
+    <div class="diff-pills">
+      <span class="pill">3 modalidades a elección</span>
+      <span class="pill">Perfil joven aventurero</span>
+      <span class="pill">Paradas fotográficas curadas</span>
+      <span class="pill">Instagram-ready</span>
+    </div>
+  </div>
+  <div class="card-right">
+    <div class="mini-block">
+      <div class="mini-label">Público objetivo</div>
+      <div class="target-info">Aventureros jóvenes 18–40 años. Familiarizados con e-scooters urbanos. Valoran novedad, contenido visual. Activos pero no extremos. Presupuesto medio.</div>
+    </div>
+    <div class="mini-block">
+      <div class="mini-label">Datos operativos</div>
+      <div class="ops-grid">
+        <div class="ops-item"><div class="ops-val">½ día</div><div class="ops-key">Duración</div></div>
+        <div class="ops-item"><div class="ops-val">4–10</div><div class="ops-key">Pax grupo</div></div>
+        <div class="ops-item"><div class="ops-val">Primav/Ver</div><div class="ops-key">Temporada</div></div>
+        <div class="ops-item"><div class="ops-val">ES / EN</div><div class="ops-key">Idiomas</div></div>
+      </div>
+    </div>
+    <div class="commission-box">
+      <div class="comm-num">15%</div>
+      <div class="comm-label">Comisión operador</div>
+    </div>
+  </div>
+</div>
+
+<!-- 6. Treking Nieve + Vino -->
+<div class="card theme-verde">
+  <div class="card-left">
+    <div class="card-icon">🍷</div>
+    <div class="card-name">Nieve para<br><em>Todos + Vino</em></div>
+    <div>
+      <div class="card-price-big">USD 180–200</div>
+      <div class="card-price-label">por persona · Jun–Sep</div>
+    </div>
+  </div>
+  <div class="card-center">
+    <div class="card-tagline">"Raquetas andinas en la mañana, degustación premium en el valle al atardecer. Para quienes no necesitan saber esquiar para vivir los Andes."</div>
+    <div class="two-col">
+      <div class="micro-section">
+        <div class="micro-label">Itinerario</div>
+        <div class="itinerary-steps">
+          <div class="step"><span class="step-time">08:00</span>Pickup Santiago</div>
+          <div class="step"><span class="step-time">09:45</span>Clase introductoria raquetas (aprenderás en 10 min)</div>
+          <div class="step"><span class="step-time">10:15</span>Caminata raquetas andinas — ritmo relajado, paisaje excepcional</div>
+          <div class="step"><span class="step-time">14:00</span>Almuerzo en viña Valle Maipo</div>
+          <div class="step"><span class="step-time">15:30</span>Tour + degustación 3–4 vinos premium chilenos</div>
+          <div class="step"><span class="step-time">18:00</span>Regreso Santiago</div>
+        </div>
+      </div>
+      <div class="micro-section">
+        <div class="micro-label">Incluye</div>
+        <div class="includes-list">
+          <div class="include-item">Transporte roundtrip</div>
+          <div class="include-item">Guía especializado grupos diversos</div>
+          <div class="include-item">Raquetas + bastones + clase</div>
+          <div class="include-item">Almuerzo en viña + degustación 3–4 vinos</div>
+          <div class="include-item">Seguro de accidentes</div>
+        </div>
+        <div style="margin-top:8px;">
+          <div class="micro-label">Adaptaciones</div>
+          <div style="font-size:9.5px; color:#4a3c2e; line-height:1.5;">
+            ✦ Adultos mayores 65–75: ruta corta, guía primeros auxilios geriátricos — USD 220–240<br>
+            ✦ Familias c/ niños: juegos, chocolate caliente, paradas cada 20–30 min
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="diff-pills">
+      <span class="pill">Sin necesidad de esquiar</span>
+      <span class="pill">Apto adultos mayores activos</span>
+      <span class="pill">Combo único nieve + vino</span>
+      <span class="pill">Evita frustración Farellones</span>
+    </div>
+  </div>
+  <div class="card-right">
+    <div class="mini-block">
+      <div class="mini-label">Público objetivo</div>
+      <div class="target-info">Turistas 18–75 años que NO saben esquiar. Adultos mayores activos 65–75 europeos (alto poder adquisitivo) y familias con niños pequeños.</div>
+    </div>
+    <div class="mini-block">
+      <div class="mini-label">Datos operativos</div>
+      <div class="ops-grid">
+        <div class="ops-item"><div class="ops-val">1 día</div><div class="ops-key">Duración</div></div>
+        <div class="ops-item"><div class="ops-val">4–12</div><div class="ops-key">Pax grupo</div></div>
+        <div class="ops-item"><div class="ops-val">Jun–Sep</div><div class="ops-key">Temporada</div></div>
+        <div class="ops-item"><div class="ops-val">ES / EN</div><div class="ops-key">Idiomas</div></div>
+      </div>
+    </div>
+    <div class="commission-box">
+      <div class="comm-num">15–20%</div>
+      <div class="comm-label">Comisión operador</div>
+    </div>
+  </div>
+</div>
+
+<!-- 7. Full Maipo 3D/2N -->
+<div class="card theme-cielo">
+  <div class="card-left">
+    <div class="card-icon">🏕</div>
+    <div class="card-name">Full Maipo<br><em>Inmersivo 3D</em></div>
+    <div>
+      <div class="card-price-big">USD 780–920</div>
+      <div class="card-price-label">por persona · 3D/2N</div>
+    </div>
+  </div>
+  <div class="card-center">
+    <div class="card-tagline">"La experiencia completa del Cajón. Aventura, cultura andina, gastronomía y los mejores cielos del hemisferio sur. Sin planificar absolutamente nada."</div>
+    <div class="two-col">
+      <div class="micro-section">
+        <div class="micro-label">Itinerario 3 días</div>
+        <div class="itinerary-steps">
+          <div class="step"><span class="step-time">DÍA 1</span>Pickup + Embalse El Yeso o Laguna Nilus + check-in lodge boutique + cena bienvenida</div>
+          <div class="step"><span class="step-time">DÍA 2</span>Trekking o escalada (según nivel) + Rafting (verano) / Raquetas (invierno)</div>
+          <div class="step"><span class="step-time">Noche</span>Tour astronómico profesional con telescopio (guía Renu)</div>
+          <div class="step"><span class="step-time">DÍA 3</span>Actividad cultural / yoga / visita artesanos + almuerzo + regreso</div>
+        </div>
+      </div>
+      <div class="micro-section">
+        <div class="micro-label">Incluye</div>
+        <div class="includes-list">
+          <div class="include-item">Transporte privado completo</div>
+          <div class="include-item">2 noches lodge boutique</div>
+          <div class="include-item">Todas las comidas (3 desayunos, almuerzos, 2 cenas)</div>
+          <div class="include-item">Guías especializados cada actividad</div>
+          <div class="include-item">Tour astronómico profesional</div>
+          <div class="include-item">Seguro completo</div>
+        </div>
+      </div>
+    </div>
+    <div class="diff-pills">
+      <span class="pill">All-inclusive real</span>
+      <span class="pill">Adaptación verano/invierno</span>
+      <span class="pill">Astronomía profesional incluida</span>
+      <span class="pill">Ideal segmento LatAm premium</span>
+    </div>
+  </div>
+  <div class="card-right">
+    <div class="mini-block">
+      <div class="mini-label">Público objetivo</div>
+      <div class="target-info">Viajeros premium multi-día 30–55 años. Latinoamericanos, europeos y norteamericanos. Buscan itinerario curado sin preocuparse de nada.</div>
+    </div>
+    <div class="mini-block">
+      <div class="mini-label">Datos operativos</div>
+      <div class="ops-grid">
+        <div class="ops-item"><div class="ops-val">3D/2N</div><div class="ops-key">Duración</div></div>
+        <div class="ops-item"><div class="ops-val">2–8</div><div class="ops-key">Pax grupo</div></div>
+        <div class="ops-item"><div class="ops-val">Todo el año</div><div class="ops-key">Temporada</div></div>
+        <div class="ops-item"><div class="ops-val">ES / EN / PT</div><div class="ops-key">Idiomas</div></div>
+      </div>
+    </div>
+    <div class="commission-box">
+      <div class="comm-num">15–20%</div>
+      <div class="comm-label">Comisión operador</div>
+    </div>
+  </div>
+</div>
+
+<!-- 8. Cuatrimoto al Atardecer -->
+<div class="card theme-rojo">
+  <div class="card-left">
+    <div class="card-icon">🏍</div>
+    <div class="card-name">ATV<br><em>Sunset Tour</em></div>
+    <div>
+      <div class="card-price-big">USD 100–130</div>
+      <div class="card-price-label">por persona · tarde</div>
+    </div>
+  </div>
+  <div class="card-center">
+    <div class="card-tagline">"La golden hour de los Andes, a toda velocidad. Con fotos profesionales Instagram-ready entregadas en 24 horas."</div>
+    <div class="two-col">
+      <div class="micro-section">
+        <div class="micro-label">Itinerario</div>
+        <div class="itinerary-steps">
+          <div class="step"><span class="step-time">15:30</span>Pickup Santiago</div>
+          <div class="step"><span class="step-time">16:00</span>Briefing seguridad + práctica cuatrimoto</div>
+          <div class="step"><span class="step-time">16:30</span>Tour cuatrimoto — timing golden hour perfecto</div>
+          <div class="step"><span class="step-time">18:00</span>Sesión fotos profesionales en miradores de atardecer</div>
+          <div class="step"><span class="step-time">19:00</span>Regreso Santiago. Fotos editadas en 24 hrs</div>
+        </div>
+      </div>
+      <div class="micro-section">
+        <div class="micro-label">Incluye</div>
+        <div class="includes-list">
+          <div class="include-item">Cuatrimoto + casco + equipo seguridad</div>
+          <div class="include-item">Guía experto certificado</div>
+          <div class="include-item">Fotógrafo profesional incluido</div>
+          <div class="include-item">Fotos editadas entregadas en 24 hrs</div>
+          <div class="include-item">Seguro de accidentes</div>
+        </div>
+      </div>
+    </div>
+    <div class="diff-pills">
+      <span class="pill">Timing golden hour exacto</span>
+      <span class="pill">Fotógrafo profesional incluido</span>
+      <span class="pill">Entrega 24 hrs</span>
+      <span class="pill">Adrenalina + contenido visual</span>
+    </div>
+  </div>
+  <div class="card-right">
+    <div class="mini-block">
+      <div class="mini-label">Público objetivo</div>
+      <div class="target-info">Aventureros jóvenes 25–45 años, latinos y norteamericanos. Buscan adrenalina + contenido visual para redes sociales. Instagram como motor de compra.</div>
+    </div>
+    <div class="mini-block">
+      <div class="mini-label">Datos operativos</div>
+      <div class="ops-grid">
+        <div class="ops-item"><div class="ops-val">½ tarde</div><div class="ops-key">Duración</div></div>
+        <div class="ops-item"><div class="ops-val">2–8</div><div class="ops-key">Pax grupo</div></div>
+        <div class="ops-item"><div class="ops-val">Todo el año</div><div class="ops-key">Temporada</div></div>
+        <div class="ops-item"><div class="ops-val">ES / EN</div><div class="ops-key">Idiomas</div></div>
+      </div>
+    </div>
+    <div class="commission-box">
+      <div class="comm-num">15–20%</div>
+      <div class="comm-label">Comisión operador</div>
+    </div>
+  </div>
+</div>
+
+<!-- 9. Refugio Tupungato -->
+<div class="card theme-verde">
+  <div class="card-left">
+    <div class="card-icon">🏔</div>
+    <div class="card-name">Refugio<br><em>Tupungato</em></div>
+    <div>
+      <div class="card-price-big">USD 800–1.200</div>
+      <div class="card-price-label">por persona · 5D/4N</div>
+    </div>
+  </div>
+  <div class="card-center">
+    <div class="card-tagline">"Vive la montaña como los arrieros: auténtica, rústica, profunda. 5 días sin señal — mulas llevan el equipo, tú solo caminas y contemplas."</div>
+    <div class="two-col">
+      <div class="micro-section">
+        <div class="micro-label">Expedición 5 días</div>
+        <div class="itinerary-steps">
+          <div class="step"><span class="step-time">DÍA 1</span>Llegada Valle Volcán + preparativos + inicio caminata (3–4 hrs)</div>
+          <div class="step"><span class="step-time">DÍA 2</span>Caminata exploratoria sin peso + Termas rústicas en la montaña</div>
+          <div class="step"><span class="step-time">DÍA 3</span>Ascenso a punto más alto (cumbre opcional) + asado celebración</div>
+          <div class="step"><span class="step-time">DÍA 4</span>Descenso pausado + spa rústico + cena despedida</div>
+          <div class="step"><span class="step-time">DÍA 5</span>Desayuno Rancho El Añil + regreso Santiago</div>
+        </div>
+      </div>
+      <div class="micro-section">
+        <div class="micro-label">Incluye</div>
+        <div class="includes-list">
+          <div class="include-item">Transporte Van Santiago ↔ Valle Río Colorado</div>
+          <div class="include-item">Guía Ecocaminante (Jaime Acevedo, certificado UIMLA)</div>
+          <div class="include-item">Mulas + arrieros para equipaje pesado</div>
+          <div class="include-item">4 noches alojamiento (Refugio + carpa expedición)</div>
+          <div class="include-item">Alimentación completa (4 desayunos + raciones + 4 cenas)</div>
+          <div class="include-item">Mensajería satelital + seguro montaña</div>
+        </div>
+      </div>
+    </div>
+    <div class="diff-pills">
+      <span class="pill">Mulas llevan el equipo</span>
+      <span class="pill">Guía UIMLA certificado</span>
+      <span class="pill">Termas rústicas en ruta</span>
+      <span class="pill">Storytelling geológico</span>
+    </div>
+  </div>
+  <div class="card-right">
+    <div class="mini-block">
+      <div class="mini-label">Público objetivo</div>
+      <div class="target-info">Montañistas/trekkers alta montaña 25–55 años. Internacionales (europeos, norteamericanos) + chilenos ABC1. USD 800–1.200 presupuesto experiencia.</div>
+    </div>
+    <div class="mini-block">
+      <div class="mini-label">Datos operativos</div>
+      <div class="ops-grid">
+        <div class="ops-item"><div class="ops-val">5D/4N</div><div class="ops-key">Duración</div></div>
+        <div class="ops-item"><div class="ops-val">4–10</div><div class="ops-key">Pax grupo</div></div>
+        <div class="ops-item"><div class="ops-val">Oct–Abr</div><div class="ops-key">Temporada</div></div>
+        <div class="ops-item"><div class="ops-val">ES / EN</div><div class="ops-key">Idiomas</div></div>
+      </div>
+    </div>
+    <div class="commission-box">
+      <div class="comm-num">15–20%</div>
+      <div class="comm-label">Comisión operador</div>
+    </div>
+  </div>
+</div>
+
+<!-- 10. Cajón 2D - Embalse + Vinos + Astronomía -->
+<div class="card theme-cielo">
+  <div class="card-left">
+    <div class="card-icon">🏔</div>
+    <div class="card-name">Cajón 2D<br><em>Inmersivo</em></div>
+    <div>
+      <div class="card-price-big">USD 500</div>
+      <div class="card-price-label">por persona · 2D/1N</div>
+    </div>
+  </div>
+  <div class="card-center">
+    <div class="card-tagline">"Embalse turquesa al amanecer, vinos de altura al mediodía, y los mejores cielos del sur en la noche. El Cajón del Maipo completo en 48 horas."</div>
+    <div class="two-col">
+      <div class="micro-section">
+        <div class="micro-label">Itinerario</div>
+        <div class="itinerary-steps">
+          <div class="step"><span class="step-time">DÍA 1</span>Embalse El Yeso + desayuno en montaña + check-in Millahue</div>
+          <div class="step"><span class="step-time">16:30</span>Yoga en naturaleza</div>
+          <div class="step"><span class="step-time">19:00</span>Cena con degustación vinos chilenos</div>
+          <div class="step"><span class="step-time">21:00</span>Observación cielo profundo — telescopio profesional</div>
+          <div class="step"><span class="step-time">DÍA 2</span>Trekking / Rafting (verano) o Cayoning + tarde libre SPA</div>
+          <div class="step"><span class="step-time">18:00</span>Vuelta a Santiago</div>
+        </div>
+      </div>
+      <div class="micro-section">
+        <div class="micro-label">Incluye</div>
+        <div class="includes-list">
+          <div class="include-item">Transporte privado Santiago–Cajón–Santiago</div>
+          <div class="include-item">1 noche alojamiento lodge boutique</div>
+          <div class="include-item">Todas las comidas (2 desayunos, 2 almuerzos, 1 cena)</div>
+          <div class="include-item">Guías especializados por actividad</div>
+          <div class="include-item">Tour astronómico profesional con telescopio</div>
+          <div class="include-item">Degustación vinos chilenos premium + seguro</div>
+        </div>
+      </div>
+    </div>
+    <div class="diff-pills">
+      <span class="pill">Astronomía profesional (no app)</span>
+      <span class="pill">Vinos de altura valle Maipo</span>
+      <span class="pill">Adaptación estacional</span>
+      <span class="pill">All-inclusive real</span>
+    </div>
+  </div>
+  <div class="card-right">
+    <div class="mini-block">
+      <div class="mini-label">Público objetivo</div>
+      <div class="target-info">Viajeros conscientes urbano-naturaleza 28–45 años. Europeos (Alemania, Países Bajos, Francia) + norteamericanos. "Off the beaten path", valoran autenticidad.</div>
+    </div>
+    <div class="mini-block">
+      <div class="mini-label">Datos operativos</div>
+      <div class="ops-grid">
+        <div class="ops-item"><div class="ops-val">2D/1N</div><div class="ops-key">Duración</div></div>
+        <div class="ops-item"><div class="ops-val">2–8</div><div class="ops-key">Pax grupo</div></div>
+        <div class="ops-item"><div class="ops-val">Todo el año</div><div class="ops-key">Temporada</div></div>
+        <div class="ops-item"><div class="ops-val">ES / EN</div><div class="ops-key">Idiomas</div></div>
+      </div>
+    </div>
+    <div class="commission-box">
+      <div class="comm-num">15–20%</div>
+      <div class="comm-label">Comisión operador</div>
+    </div>
+  </div>
+</div>
+
+<!-- 11. Astronomía + Vino - Cielos del Maipo -->
+<div class="card theme-cielo">
+  <div class="card-left">
+    <div class="card-icon">🌟</div>
+    <div class="card-name">Cielos del<br><em>Maipo</em></div>
+    <div>
+      <div class="card-price-big">USD 200–400</div>
+      <div class="card-price-label">por persona · noche</div>
+    </div>
+  </div>
+  <div class="card-center">
+    <div class="card-tagline">"Observación telescópica del hemisferio sur + 3 vinos premium chilenos + guía astronómico certificado. Lo que Atacama no puede ofrecerte a 90 min de Santiago."</div>
+    <div class="two-col">
+      <div class="micro-section">
+        <div class="micro-label">Itinerario</div>
+        <div class="itinerary-steps">
+          <div class="step"><span class="step-time">15:30</span>Pick-up hoteles Santiago (transporte premium)</div>
+          <div class="step"><span class="step-time">17:00</span>Llegada Cajón + intro astronómica + 1er vino (Cabernet)</div>
+          <div class="step"><span class="step-time">17:45</span>Observación crepuscular — planetas visibles (Venus/Júpiter)</div>
+          <div class="step"><span class="step-time">18:30</span>2da degustación + tabla gourmet (Carmenere)</div>
+          <div class="step"><span class="step-time">19:00</span>Cielo profundo — nebulosas, cúmulos, galaxias hemisferio sur</div>
+          <div class="step"><span class="step-time">20:45</span>3ra degustación + reflexión (Syrah blend) — regreso 21:00</div>
+        </div>
+      </div>
+      <div class="micro-section">
+        <div class="micro-label">Incluye</div>
+        <div class="includes-list">
+          <div class="include-item">Transporte privado ida/vuelta hoteles Santiago</div>
+          <div class="include-item">Guía astronómico certificado (bilingüe ES/EN)</div>
+          <div class="include-item">Telescopios 8"+ con montura computarizada</div>
+          <div class="include-item">Binoculares 15x70 para cada participante</div>
+          <div class="include-item">3 vinos premium + tabla quesos artesanales</div>
+          <div class="include-item">Manta premium + calefacción exterior</div>
+        </div>
+      </div>
+    </div>
+    <div class="diff-pills">
+      <span class="pill">Guía con certificación astronómica</span>
+      <span class="pill">Telescopios 8"+ profesionales</span>
+      <span class="pill">Bortle 3–4 sin contaminación</span>
+      <span class="pill">Máx. 8 personas</span>
+    </div>
+  </div>
+  <div class="card-right">
+    <div class="mini-block">
+      <div class="mini-label">Público objetivo</div>
+      <div class="target-info">Viajeros sofisticados 35–65 años. Norteamericanos, europeos, australianos. Doble pasión: astronomía amateur + enoturismo premium. Presupuesto USD 200–400.</div>
+    </div>
+    <div class="mini-block">
+      <div class="mini-label">Datos operativos</div>
+      <div class="ops-grid">
+        <div class="ops-item"><div class="ops-val">½ noche</div><div class="ops-key">Duración</div></div>
+        <div class="ops-item"><div class="ops-val">4–8</div><div class="ops-key">Pax grupo</div></div>
+        <div class="ops-item"><div class="ops-val">Todo el año</div><div class="ops-key">Temporada</div></div>
+        <div class="ops-item"><div class="ops-val">ES / EN</div><div class="ops-key">Idiomas</div></div>
+      </div>
+    </div>
+    <div class="commission-box">
+      <div class="comm-num">15–20%</div>
+      <div class="comm-label">Comisión operador</div>
+    </div>
+  </div>
+</div>
+
+<!-- 12. Antitermas - Andes Cold Therapy -->
+<div class="card theme-cielo">
+  <div class="card-left">
+    <div class="card-icon">🧊</div>
+    <div class="card-name">Andes<br><em>Cold Therapy</em></div>
+    <div>
+      <div class="card-price-big">USD 150–300</div>
+      <div class="card-price-label">por persona · medio día</div>
+    </div>
+  </div>
+  <div class="card-center">
+    <div class="card-tagline">"Protocolo Wim Hof en aguas glaciares andinas a 4–8°C. Para biohackers que saben que el frío inteligente es la medicina más poderosa."</div>
+    <div class="two-col">
+      <div class="micro-section">
+        <div class="micro-label">Protocolo 3.5 horas</div>
+        <div class="itinerary-steps">
+          <div class="step"><span class="step-time">08:00</span>Pick-up + traslado base Cajón del Maipo</div>
+          <div class="step"><span class="step-time">10:00</span>Briefing fisiológico + sesión respiración Wim Hof (3 rondas)</div>
+          <div class="step"><span class="step-time">10:30</span>1ra inmersión agua glaciar (4–8°C) — 1–3 min, monitoreo continuo</div>
+          <div class="step"><span class="step-time">10:45</span>Recuperación sauna portátil (85°C) + hidratación + caldo</div>
+          <div class="step"><span class="step-time">11:15</span>Sesión 2 respiración + 2da inmersión (objetivo: +30% tiempo)</div>
+          <div class="step"><span class="step-time">11:45</span>Brunch recovery + cierre protocolo para replicar en casa</div>
+        </div>
+      </div>
+      <div class="micro-section">
+        <div class="micro-label">Incluye</div>
+        <div class="includes-list">
+          <div class="include-item">Transporte privado ida/vuelta Santiago</div>
+          <div class="include-item">Instructor certificado Wim Hof Method</div>
+          <div class="include-item">2 ciclos inmersión pozón glaciar natural</div>
+          <div class="include-item">2 sesiones sauna portátil de leña</div>
+          <div class="include-item">Brunch recovery anti-inflamatorio</div>
+          <div class="include-item">Guía digital PDF "Protocolo 21 días" + seguro</div>
+        </div>
+      </div>
+    </div>
+    <div class="diff-pills">
+      <span class="pill">Agua glaciar natural (no artificial)</span>
+      <span class="pill">Instructor certificado WHM</span>
+      <span class="pill">Evidencia científica</span>
+      <span class="pill">Máx. 6 personas</span>
+    </div>
+  </div>
+  <div class="card-right">
+    <div class="mini-block">
+      <div class="mini-label">Público objetivo</div>
+      <div class="target-info">Biohackers y wellness enthusiasts 28–50 años. Europeos y norteamericanos. Conocen método Wim Hof / podcasts Huberman. Rechazan termas masificadas.</div>
+    </div>
+    <div class="mini-block">
+      <div class="mini-label">Datos operativos</div>
+      <div class="ops-grid">
+        <div class="ops-item"><div class="ops-val">½ día</div><div class="ops-key">Duración</div></div>
+        <div class="ops-item"><div class="ops-val">2–6</div><div class="ops-key">Pax grupo</div></div>
+        <div class="ops-item"><div class="ops-val">Todo el año</div><div class="ops-key">Temporada</div></div>
+        <div class="ops-item"><div class="ops-val">ES / EN</div><div class="ops-key">Idiomas</div></div>
+      </div>
+    </div>
+    <div class="commission-box">
+      <div class="comm-num">15%</div>
+      <div class="comm-label">Comisión operador</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Red Maipo Aventura – Infografía Destino</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --tierra:  #1E1108;
+    --arena:   #F5EDD8;
+    --ocre:    #C4862A;
+    --ocre-lt: #E8A83A;
+    --verde:   #2E4D30;
+    --cielo:   #1A3A52;
+    --nieve:   #F0EDE6;
+    --acento:  #C23F1A;
+    --carbon:  #1C1C1C;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: #111;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+    font-family: 'Barlow', sans-serif;
+  }
+
+  .infographic {
+    width: 794px;   /* A4 landscape equivalent for screen */
+    background: var(--carbon);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ─── TOP HERO ─── */
+  .hero {
+    position: relative;
+    height: 160px;
+    background: var(--cielo);
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right,
+      rgba(30,17,8,0.92) 0%,
+      rgba(30,17,8,0.5) 50%,
+      rgba(30,17,8,0.1) 100%);
+    z-index: 1;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 30px 20px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .hero-left {}
+  .hero-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--ocre);
+    margin-bottom: 5px;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+    font-weight: 900;
+    color: var(--arena);
+    line-height: 1;
+  }
+  .hero-title em { color: var(--ocre-lt); font-style: italic; }
+
+  .hero-right {
+    text-align: right;
+  }
+  .hero-distance {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 64px;
+    font-weight: 800;
+    color: white;
+    line-height: 1;
+    display: block;
+  }
+  .hero-distance-label {
+    font-size: 11px;
+    color: rgba(245,237,216,0.6);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  /* ─── BODY GRID ─── */
+  .body {
+    display: grid;
+    grid-template-columns: 220px 1fr 180px;
+    gap: 0;
+    min-height: 380px;
+  }
+
+  /* ── Col 1: Why Maipo ── */
+  .col-why {
+    background: var(--tierra);
+    padding: 22px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .col-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--ocre);
+    border-left: 2px solid var(--ocre);
+    padding-left: 8px;
+    margin-bottom: 4px;
+  }
+
+  .why-item {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .why-icon {
+    font-size: 20px;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .why-text {}
+  .why-headline {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--arena);
+    text-transform: uppercase;
+    line-height: 1.1;
+  }
+  .why-detail {
+    font-size: 10px;
+    color: rgba(245,237,216,0.5);
+    line-height: 1.5;
+    font-weight: 300;
+    margin-top: 2px;
+  }
+
+  /* ── Col 2: Experience map ── */
+  .col-center {
+    background: #262626;
+    padding: 22px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .exp-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    flex: 1;
+  }
+
+  .exp-card {
+    background: #1a1a1a;
+    border-top: 2px solid var(--ocre);
+    padding: 10px 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    position: relative;
+  }
+  .exp-card.t2 { border-top-color: var(--verde); }
+  .exp-card.t2 .exp-tier { color: #5a9960; }
+  .exp-card.t2 .exp-price { color: #5a9960; }
+  .exp-card.t3 { border-top-color: var(--cielo); }
+  .exp-card.t3 .exp-tier { color: #4a7a9b; }
+  .exp-card.t3 .exp-price { color: #4a7a9b; }
+
+  .exp-icon { font-size: 18px; }
+  .exp-tier {
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--ocre);
+  }
+  .exp-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--arena);
+    line-height: 1.1;
+    text-transform: uppercase;
+  }
+  .exp-detail {
+    font-size: 9px;
+    color: rgba(245,237,216,0.45);
+    line-height: 1.35;
+    font-weight: 300;
+  }
+  .exp-price {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--ocre);
+    margin-top: 3px;
+  }
+  .exp-duration {
+    position: absolute;
+    top: 8px; right: 8px;
+    background: rgba(196,134,42,0.15);
+    color: var(--ocre);
+    font-size: 8px;
+    font-weight: 700;
+    padding: 2px 5px;
+    letter-spacing: 0.5px;
+  }
+  .exp-card.t2 .exp-duration {
+    background: rgba(58,92,62,0.3);
+    color: #5a9960;
+  }
+  .exp-card.t3 .exp-duration {
+    background: rgba(26,58,82,0.4);
+    color: #4a7a9b;
+  }
+
+  /* ── Col 3: Markets + Numbers ── */
+  .col-right {
+    background: var(--verde);
+    padding: 22px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .market-list { display: flex; flex-direction: column; gap: 6px; }
+  .market-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 8px;
+    background: rgba(0,0,0,0.2);
+  }
+  .mflag { font-size: 16px; flex-shrink: 0; }
+  .mname {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--arena);
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  .mtag {
+    font-size: 8.5px;
+    color: rgba(245,237,216,0.5);
+    font-weight: 300;
+    margin-top: 1px;
+  }
+
+  .numbers-block {
+    background: rgba(0,0,0,0.25);
+    padding: 12px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: auto;
+  }
+  .nb-row {
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+    border-bottom: 1px solid rgba(245,237,216,0.1);
+    padding-bottom: 8px;
+  }
+  .nb-row:last-child { border: none; padding: 0; }
+  .nb-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--ocre-lt);
+    line-height: 1;
+  }
+  .nb-label {
+    font-size: 9.5px;
+    color: rgba(245,237,216,0.6);
+    font-weight: 300;
+    line-height: 1.3;
+  }
+
+  /* ─── BOTTOM STRIP ─── */
+  .bottom-strip {
+    background: var(--ocre);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 30px;
+    gap: 20px;
+  }
+  .bs-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    justify-content: center;
+    position: relative;
+  }
+  .bs-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%; transform: translateY(-50%);
+    height: 24px; width: 1px;
+    background: rgba(255,255,255,0.35);
+  }
+  .bs-icon { font-size: 18px; }
+  .bs-text { }
+  .bs-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: white;
+    line-height: 1;
+  }
+  .bs-desc {
+    font-size: 9.5px;
+    color: rgba(255,255,255,0.75);
+    font-weight: 400;
+    letter-spacing: 0.3px;
+  }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    background: var(--tierra);
+    padding: 12px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .footer-logo-box {
+    background: var(--ocre);
+    width: 28px; height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    color: white;
+  }
+  .footer-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--arena);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1;
+  }
+  .footer-sub {
+    font-size: 8.5px;
+    color: rgba(245,237,216,0.4);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .footer-meta {
+    font-size: 9px;
+    color: rgba(245,237,216,0.35);
+    text-align: right;
+    line-height: 1.7;
+  }
+  .footer-meta strong {
+    color: var(--ocre);
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+
+<div class="infographic">
+
+  <!-- ── HERO ── -->
+  <div class="hero">
+    <svg class="hero-bg" viewBox="0 0 794 160" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="hsky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#071520"/>
+          <stop offset="100%" stop-color="#1A3A52"/>
+        </linearGradient>
+        <linearGradient id="hmid" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#2E4D30"/>
+          <stop offset="100%" stop-color="#1a2e1c"/>
+        </linearGradient>
+      </defs>
+      <rect width="794" height="160" fill="url(#hsky)"/>
+      <!-- stars -->
+      <circle cx="500" cy="20" r="1.2" fill="rgba(255,255,255,0.6)"/>
+      <circle cx="580" cy="12" r="0.8" fill="rgba(255,255,255,0.4)"/>
+      <circle cx="640" cy="30" r="1.5" fill="rgba(255,255,255,0.7)"/>
+      <circle cx="700" cy="15" r="0.7" fill="rgba(255,255,255,0.5)"/>
+      <circle cx="760" cy="35" r="1" fill="rgba(255,255,255,0.6)"/>
+      <circle cx="540" cy="45" r="0.8" fill="rgba(255,255,255,0.4)"/>
+      <!-- mountains back -->
+      <polygon points="350,160 500,40 650,160" fill="rgba(18,35,52,0.9)"/>
+      <polygon points="500,160 650,55 800,160" fill="rgba(15,30,48,0.95)"/>
+      <polygon points="550,160 700,45 850,160" fill="rgba(20,38,58,0.8)"/>
+      <!-- snow caps -->
+      <polygon points="570,110 650,55 730,110 705,95 650,68 595,95" fill="rgba(230,225,210,0.85)"/>
+      <!-- mid mountains -->
+      <polygon points="400,160 530,80 660,160" fill="url(#hmid)" opacity="0.8"/>
+      <polygon points="500,160 600,90 700,160" fill="#243a26" opacity="0.9"/>
+      <!-- foreground -->
+      <polygon points="300,160 500,130 700,160 794,145 794,160 0,160" fill="rgba(20,10,5,0.8)"/>
+    </svg>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-left">
+        <div class="hero-eyebrow">Red Maipo Aventura · Turismo con Proyección Internacional</div>
+        <div class="hero-title">Cajón del Maipo:<br>Aventura <em>Auténtica</em></div>
+      </div>
+      <div class="hero-right">
+        <span class="hero-distance">60 km</span>
+        <div class="hero-distance-label">desde Santiago</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── BODY ── -->
+  <div class="body">
+
+    <!-- Col 1: Por qué Maipo -->
+    <div class="col-why">
+      <div class="col-title">¿Por qué el Cajón del Maipo?</div>
+
+      <div class="why-item">
+        <div class="why-icon">🏔</div>
+        <div class="why-text">
+          <div class="why-headline">Proximidad Única</div>
+          <div class="why-detail">Alta montaña andina (1.000–3.000 m) a 60 km de una capital de 7 millones de habitantes.</div>
+        </div>
+      </div>
+
+      <div class="why-item">
+        <div class="why-icon">🌟</div>
+        <div class="why-text">
+          <div class="why-headline">Cielos Oscuros</div>
+          <div class="why-detail">Uno de los mejores cielos para astronomía en el hemisferio sur. Sin contaminación lumínica.</div>
+        </div>
+      </div>
+
+      <div class="why-item">
+        <div class="why-icon">🐴</div>
+        <div class="why-text">
+          <div class="why-headline">Cultura Arriera Viva</div>
+          <div class="why-detail">Comunidad de arrieros con tradición de siglos. No folklore —identidad territorial real.</div>
+        </div>
+      </div>
+
+      <div class="why-item">
+        <div class="why-icon">♨️</div>
+        <div class="why-text">
+          <div class="why-headline">Naturaleza Total</div>
+          <div class="why-detail">Río, nieve, termas, volcanes, glaciares, viñedos. Todo en el mismo valle.</div>
+        </div>
+      </div>
+
+      <div class="why-item">
+        <div class="why-icon">🤝</div>
+        <div class="why-text">
+          <div class="why-headline">Red Integrada</div>
+          <div class="why-detail">8 empresas formalizadas. Experiencias coordinadas. Un solo punto de contacto para operadores.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Col 2: Portafolio -->
+    <div class="col-center">
+      <div class="col-title" style="color: var(--ocre);">Portafolio de Experiencias 2025–2026</div>
+
+      <div class="exp-grid">
+
+        <div class="exp-card">
+          <div class="exp-duration">1 día</div>
+          <div class="exp-icon">🏞</div>
+          <div class="exp-name">Full Day Maipo</div>
+          <div class="exp-detail">Embalse El Yeso + trekking + almuerzo + rafting</div>
+          <div class="exp-price">USD 90–140</div>
+        </div>
+
+        <div class="exp-card">
+          <div class="exp-duration">3D/2N</div>
+          <div class="exp-icon">🐴</div>
+          <div class="exp-name">Cabalgata con Sentido</div>
+          <div class="exp-detail">Arrieros + storytelling cultural + astronomía nocturna</div>
+          <div class="exp-price">USD 780</div>
+        </div>
+
+        <div class="exp-card">
+          <div class="exp-duration">2D/1N</div>
+          <div class="exp-icon">🌌</div>
+          <div class="exp-name">Cajón 2D Inmersivo</div>
+          <div class="exp-detail">Embalse El Yeso + vinos Maipo + astronomía nocturna · All-inclusive</div>
+          <div class="exp-price">USD 500</div>
+        </div>
+
+        <div class="exp-card">
+          <div class="exp-duration">2D/1N</div>
+          <div class="exp-icon">🧗</div>
+          <div class="exp-name">La Vida Outdoor</div>
+          <div class="exp-detail">Escalada + rafting + termas + lodge boutique</div>
+          <div class="exp-price">USD 420–480</div>
+        </div>
+
+        <div class="exp-card">
+          <div class="exp-duration">1 día</div>
+          <div class="exp-icon">🌅</div>
+          <div class="exp-name">ATV Sunset Tour</div>
+          <div class="exp-detail">Cuatrimoto al atardecer · Golden hour · Fotógrafo incluido</div>
+          <div class="exp-price">USD 100–130</div>
+        </div>
+
+        <div class="exp-card t2">
+          <div class="exp-duration t2">1 noche</div>
+          <div class="exp-icon">🔭</div>
+          <div class="exp-name">Cielos del Maipo</div>
+          <div class="exp-detail">Telescopio 8"+ · Astrónomo certificado + 3 vinos · Máx. 8 pax</div>
+          <div class="exp-price">USD 200–400</div>
+        </div>
+
+        <div class="exp-card t2">
+          <div class="exp-duration t2">1 día</div>
+          <div class="exp-icon">🍷</div>
+          <div class="exp-name">Nieve + Vino</div>
+          <div class="exp-detail">Raquetas andinas mañana + viña tarde. Apto 65+ activos</div>
+          <div class="exp-price">USD 180–200</div>
+        </div>
+
+        <div class="exp-card t2">
+          <div class="exp-duration t2">5D/4N</div>
+          <div class="exp-icon">🏔</div>
+          <div class="exp-name">Refugio Tupungato</div>
+          <div class="exp-detail">Expedición alta montaña · Arrieros · Termas · UIMLA</div>
+          <div class="exp-price">USD 950–1.200</div>
+        </div>
+
+        <div class="exp-card t2">
+          <div class="exp-duration t2">3D/2N</div>
+          <div class="exp-icon">🏕</div>
+          <div class="exp-name">Full Maipo Inmersivo</div>
+          <div class="exp-detail">All-inclusive: aventura + cultura + astronomía</div>
+          <div class="exp-price">USD 780–920</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Col 3: Mercados + números -->
+    <div class="col-right">
+      <div class="col-title" style="color: rgba(245,237,216,0.6);">Mercados Objetivo</div>
+
+      <div class="market-list">
+        <div class="market-row">
+          <span class="mflag">🇺🇸🇨🇦</span>
+          <div>
+            <div class="mname">Norteamérica</div>
+            <div class="mtag">Aventura · Bienestar</div>
+          </div>
+        </div>
+        <div class="market-row">
+          <span class="mflag">🇬🇧🇩🇪🇫🇷</span>
+          <div>
+            <div class="mname">Europa</div>
+            <div class="mtag">Turismo consciente</div>
+          </div>
+        </div>
+        <div class="market-row">
+          <span class="mflag">🇧🇷</span>
+          <div>
+            <div class="mname">Brasil</div>
+            <div class="mtag">Multi-actividad · Nieve</div>
+          </div>
+        </div>
+        <div class="market-row">
+          <span class="mflag">🌎</span>
+          <div>
+            <div class="mname">Latinoamérica</div>
+            <div class="mtag">Premium · Escapadas</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="numbers-block">
+        <div class="nb-row">
+          <div class="nb-num">8</div>
+          <div class="nb-label">empresas<br>articuladas</div>
+        </div>
+        <div class="nb-row">
+          <div class="nb-num">13</div>
+          <div class="nb-label">experiencias<br>disponibles</div>
+        </div>
+        <div class="nb-row">
+          <div class="nb-num">15–20%</div>
+          <div class="nb-label">comisión para<br>operadores B2B</div>
+        </div>
+        <div class="nb-row">
+          <div class="nb-num">ES · EN · PT</div>
+          <div class="nb-label">idiomas de<br>operación</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── BOTTOM STRIP ── -->
+  <div class="bottom-strip">
+    <div class="bs-item">
+      <span class="bs-icon">🏔</span>
+      <div class="bs-text">
+        <div class="bs-num">1.000–3.000 m</div>
+        <div class="bs-desc">Altitud del valle</div>
+      </div>
+    </div>
+    <div class="bs-item">
+      <span class="bs-icon">🌡</span>
+      <div class="bs-text">
+        <div class="bs-num">Todo el año</div>
+        <div class="bs-desc">Operación 12 meses</div>
+      </div>
+    </div>
+    <div class="bs-item">
+      <span class="bs-icon">👥</span>
+      <div class="bs-text">
+        <div class="bs-num">4–20 pax</div>
+        <div class="bs-desc">Grupos pequeños</div>
+      </div>
+    </div>
+    <div class="bs-item">
+      <span class="bs-icon">🔒</span>
+      <div class="bs-text">
+        <div class="bs-num">Empresas formalizadas</div>
+        <div class="bs-desc">Seguro · Certificación · Guías</div>
+      </div>
+    </div>
+    <div class="bs-item">
+      <span class="bs-icon">✈</span>
+      <div class="bs-text">
+        <div class="bs-num">Sin vuelo adicional</div>
+        <div class="bs-desc">Desde centro Santiago</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <div class="footer">
+    <div class="footer-brand">
+      <div class="footer-logo-box">RMA</div>
+      <div>
+        <div class="footer-name">Red Maipo Aventura</div>
+        <div class="footer-sub">Cajón del Maipo · Región Metropolitana · Chile</div>
+      </div>
+    </div>
+    <div class="footer-meta">
+      Financiado por <strong>CORFO RM</strong> · Ejecutado por <strong>Innoventures</strong> + GEDES<br>
+      Proyecto 25REDME-304483 · Temporada 2025–2026
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
