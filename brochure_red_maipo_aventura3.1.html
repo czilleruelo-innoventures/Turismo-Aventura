@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Red Maipo Aventura – Brochure B2B</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --tierra: #2C1810;
+    --arena:  #F5EDD8;
+    --ocre:   #C4862A;
+    --verde:  #3A5C3E;
+    --cielo:  #1A3A52;
+    --nieve:  #F0EDE6;
+    --acento: #D4501A;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 20px 0;
+    font-family: 'Barlow', sans-serif;
+  }
+
+  /* ── PÁGINA ── */
+  .page {
+    width: 297mm;
+    min-height: 210mm;
+    background: var(--arena);
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+  }
+
+  /* ════════════════════════════════
+     CARA DELANTERA (PORTADA)
+  ════════════════════════════════ */
+  .front {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    height: 210mm;
+  }
+
+  /* Panel izquierdo – oscuro */
+  .front-left {
+    background: var(--tierra);
+    padding: 14mm 12mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .front-left::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: -60px;
+    width: 260px; height: 260px;
+    border: 2px solid rgba(196,134,42,0.25);
+    border-radius: 50%;
+  }
+  .front-left::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: 30px;
+    width: 180px; height: 180px;
+    border: 1px solid rgba(196,134,42,0.15);
+    border-radius: 50%;
+  }
+
+  .logo-area { position: relative; z-index:2; }
+  .logo-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--ocre);
+    color: white;
+    padding: 5px 12px 5px 8px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .logo-badge .dot {
+    width: 8px; height: 8px;
+    background: white; border-radius: 50%;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--arena);
+    font-size: 38px;
+    line-height: 1.1;
+    font-weight: 900;
+    position: relative; z-index:2;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--ocre);
+  }
+
+  .tagline {
+    color: rgba(245,237,216,0.6);
+    font-size: 12.5px;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    line-height: 1.6;
+    position: relative; z-index:2;
+  }
+
+  .divider-gold {
+    width: 40px; height: 2px;
+    background: var(--ocre);
+    margin: 10px 0;
+  }
+
+  .front-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    position: relative; z-index:2;
+  }
+  .stat {
+    border-top: 1px solid rgba(196,134,42,0.5);
+    padding-top: 8px;
+  }
+  .stat-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--ocre);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 9.5px;
+    color: rgba(245,237,216,0.55);
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 3px;
+  }
+
+  /* Panel derecho – foto montaje */
+  .front-right {
+    position: relative;
+    background: var(--cielo);
+    overflow: hidden;
+  }
+
+  .mountain-svg {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%; height: 100%;
+  }
+
+  .front-right-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg,
+      rgba(26,58,82,0.1) 0%,
+      rgba(42,26,16,0.6) 100%);
+    z-index: 1;
+  }
+
+  .front-right-content {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    padding: 14mm 12mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .proximity-badge {
+    align-self: flex-end;
+    background: rgba(245,237,216,0.12);
+    border: 1px solid rgba(245,237,216,0.3);
+    backdrop-filter: blur(4px);
+    padding: 8px 14px;
+    text-align: right;
+  }
+  .proximity-badge .big {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--arena);
+    line-height: 1;
+    display: block;
+  }
+  .proximity-badge .small {
+    font-size: 9px;
+    color: rgba(245,237,216,0.7);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+
+  .experiences-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .exp-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(196,134,42,0.85);
+    color: white;
+    padding: 5px 12px;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    width: fit-content;
+  }
+  .exp-pill span { font-size: 13px; }
+
+  /* ════════════════════════════════
+     CARA TRASERA (CONTENIDO)
+  ════════════════════════════════ */
+  .back {
+    height: 210mm;
+    display: grid;
+    grid-template-columns: 65mm 1fr;
+    grid-template-rows: 1fr;
+  }
+
+  /* columna izq */
+  .back-left {
+    background: var(--verde);
+    padding: 12mm 10mm;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .back-left::before {
+    content: '';
+    position: absolute;
+    top: -30px; right: -50px;
+    width: 140px; height: 140px;
+    border: 1px solid rgba(245,237,216,0.12);
+    border-radius: 50%;
+  }
+
+  .section-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(245,237,216,0.5);
+    margin-bottom: -8px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--arena);
+    line-height: 1.15;
+    font-weight: 700;
+  }
+  .section-title em { color: var(--ocre); font-style: italic; }
+
+  .body-text {
+    font-size: 10.5px;
+    font-weight: 300;
+    color: rgba(245,237,216,0.75);
+    line-height: 1.65;
+  }
+
+  .markets-block { position: relative; z-index:1; }
+  .market-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(245,237,216,0.12);
+  }
+  .market-item:last-child { border: none; }
+  .market-flag { font-size: 16px; }
+  .market-info {}
+  .market-name {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--arena);
+  }
+  .market-detail {
+    font-size: 9.5px;
+    color: rgba(245,237,216,0.5);
+  }
+
+  .contact-block {
+    background: rgba(0,0,0,0.2);
+    padding: 10px;
+    margin-top: auto;
+  }
+  .contact-label {
+    font-size: 8.5px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ocre);
+    margin-bottom: 6px;
+  }
+  .contact-line {
+    font-size: 10px;
+    color: rgba(245,237,216,0.8);
+    line-height: 1.8;
+  }
+
+  /* columna dcha */
+  .back-right {
+    background: var(--nieve);
+    padding: 12mm 12mm 10mm 12mm;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .back-right-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 2px solid var(--ocre);
+    padding-bottom: 8px;
+  }
+  .back-right-header-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--tierra);
+    letter-spacing: -0.5px;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  .back-right-header-sub {
+    font-size: 9.5px;
+    color: var(--ocre);
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* Grilla de iniciativas */
+  .initiatives-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    flex: 1;
+  }
+  .initiative-card {
+    background: white;
+    border-left: 3px solid var(--ocre);
+    padding: 8px 9px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .initiative-card.verde { border-left-color: var(--verde); }
+  .initiative-card.cielo { border-left-color: var(--cielo); }
+  .initiative-card.acento { border-left-color: var(--acento); }
+
+  .init-tier {
+    font-size: 7.5px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--ocre);
+  }
+  .init-tier.verde { color: var(--verde); }
+  .init-tier.cielo { color: var(--cielo); }
+  .init-tier.acento { color: var(--acento); }
+
+  .init-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--tierra);
+    line-height: 1.1;
+    text-transform: uppercase;
+  }
+  .init-desc {
+    font-size: 9px;
+    color: #555;
+    line-height: 1.4;
+    font-weight: 300;
+  }
+  .init-price {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--ocre);
+    margin-top: 2px;
+  }
+  .init-price.verde { color: var(--verde); }
+  .init-price.cielo { color: var(--cielo); }
+  .init-price.acento { color: var(--acento); }
+
+  .commission-bar {
+    background: var(--tierra);
+    padding: 9px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 2px;
+  }
+  .comm-item { text-align: center; }
+  .comm-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--ocre);
+    line-height: 1;
+    display: block;
+  }
+  .comm-label {
+    font-size: 8px;
+    color: rgba(245,237,216,0.6);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .comm-divider {
+    width: 1px;
+    height: 30px;
+    background: rgba(245,237,216,0.15);
+  }
+  .comm-cta {
+    font-size: 10px;
+    color: var(--arena);
+    font-weight: 300;
+    line-height: 1.5;
+    max-width: 140px;
+  }
+  .comm-cta strong { color: var(--ocre); font-weight: 600; }
+
+  @media print {
+    body { background: white; padding: 0; gap: 0; }
+    .page { width: 297mm; height: 210mm; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════ CARA DELANTERA ════════════════ -->
+<div class="page front">
+
+  <!-- Panel izquierdo -->
+  <div class="front-left">
+    <div class="logo-area">
+      <div class="logo-badge"><span class="dot"></span> Red Maipo Aventura</div>
+      <div style="font-size:9px; color:rgba(245,237,216,0.4); letter-spacing:1px; margin-top:4px;">CAJÓN DEL MAIPO · REGIÓN METROPOLITANA · CHILE</div>
+    </div>
+
+    <div>
+      <div class="hero-title">
+        Montaña <em>viva</em><br>a 60 km de<br>Santiago.
+      </div>
+      <div class="divider-gold" style="margin-top:14px;"></div>
+      <p class="tagline" style="margin-top:10px;">
+        Una red de 8 empresas turísticas del Cajón del Maipo
+        que ofrece experiencias auténticas, integradas y exportables
+        para el viajero internacional de alta exigencia.
+      </p>
+    </div>
+
+    <div class="front-stats">
+      <div class="stat">
+        <div class="stat-num">8</div>
+        <div class="stat-label">Empresas articuladas</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">12</div>
+        <div class="stat-label">Experiencias disponibles</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">6</div>
+        <div class="stat-label">Mercados objetivo</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Panel derecho – ilustración + highlights -->
+  <div class="front-right">
+    <!-- Ilustración SVG de montaña -->
+    <svg class="mountain-svg" viewBox="0 0 400 480" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#0d2035"/>
+          <stop offset="60%" stop-color="#1A3A52"/>
+          <stop offset="100%" stop-color="#2d5a7b"/>
+        </linearGradient>
+        <linearGradient id="snow" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#eae8e0"/>
+          <stop offset="100%" stop-color="#c8c0b0"/>
+        </linearGradient>
+        <linearGradient id="mid" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#3A5C3E"/>
+          <stop offset="100%" stop-color="#2a4a2e"/>
+        </linearGradient>
+        <linearGradient id="fore" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#1e3320"/>
+          <stop offset="100%" stop-color="#0f1f12"/>
+        </linearGradient>
+      </defs>
+      <!-- sky -->
+      <rect width="400" height="480" fill="url(#sky)"/>
+      <!-- stars -->
+      <circle cx="60" cy="40" r="1.2" fill="rgba(255,255,255,0.7)"/>
+      <circle cx="120" cy="25" r="0.8" fill="rgba(255,255,255,0.5)"/>
+      <circle cx="200" cy="15" r="1" fill="rgba(255,255,255,0.6)"/>
+      <circle cx="300" cy="35" r="1.5" fill="rgba(255,255,255,0.8)"/>
+      <circle cx="350" cy="18" r="0.7" fill="rgba(255,255,255,0.4)"/>
+      <circle cx="160" cy="55" r="0.9" fill="rgba(255,255,255,0.5)"/>
+      <circle cx="80" cy="70" r="1.1" fill="rgba(255,255,255,0.6)"/>
+      <circle cx="340" cy="60" r="0.8" fill="rgba(255,255,255,0.4)"/>
+      <!-- mountain back left -->
+      <polygon points="0,300 80,100 160,300" fill="rgba(20,40,60,0.8)"/>
+      <!-- mountain back right -->
+      <polygon points="240,300 340,80 440,300" fill="rgba(20,35,55,0.9)"/>
+      <!-- snow cap back right -->
+      <polygon points="300,140 340,80 380,140 360,130 340,95 320,130" fill="url(#snow)" opacity="0.9"/>
+      <!-- mountain main -->
+      <polygon points="-10,480 100,180 220,460" fill="url(#mid)"/>
+      <polygon points="180,460 300,140 440,460" fill="url(#mid)"/>
+      <!-- snow cap main -->
+      <polygon points="260,200 300,140 340,200 320,185 300,155 280,185" fill="url(#snow)"/>
+      <!-- valley floor -->
+      <polygon points="-10,380 200,320 440,380 440,480 -10,480" fill="url(#fore)"/>
+      <!-- river glint -->
+      <path d="M 80 400 Q 130 390 180 395 Q 230 400 280 392 Q 320 386 370 390"
+            stroke="rgba(120,180,220,0.4)" stroke-width="2" fill="none"/>
+      <!-- moon -->
+      <circle cx="70" cy="55" r="18" fill="rgba(255,240,200,0.12)"/>
+      <circle cx="65" cy="50" r="14" fill="rgba(255,240,200,0.08)"/>
+    </svg>
+
+    <div class="front-right-overlay"></div>
+
+    <div class="front-right-content">
+      <div class="proximity-badge">
+        <span class="big">60 km</span>
+        <span class="small">desde el centro de Santiago</span>
+      </div>
+
+      <div class="experiences-preview">
+        <div class="exp-pill"><span>🏔</span> Trekking & Rafting Andino</div>
+        <div class="exp-pill"><span>🌟</span> Astronomía & Vino de Altura</div>
+        <div class="exp-pill"><span>🐴</span> Cabalgata con Arrieros</div>
+        <div class="exp-pill"><span>❄️</span> Nieve, Termas & Aventura</div>
+        <div class="exp-pill"><span>🏕</span> Full Day & Multi-día All-inclusive</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════ CARA TRASERA ════════════════ -->
+<div class="page back">
+
+  <!-- Columna izquierda -->
+  <div class="back-left">
+    <div>
+      <div class="section-label">Nuestra propuesta</div>
+      <div class="section-title">El destino de <em>montaña</em> más accesible del mundo.</div>
+    </div>
+
+    <p class="body-text">
+      El Cajón del Maipo es un valle andino que combina lo que ningún otro destino ofrece: 
+      alta montaña auténtica a una hora de una capital de 7 millones de personas.
+      Naturaleza, cultura arriera, cielos oscuros y gastronomía local — todo sin vuelo internacional.
+    </p>
+
+    <div class="markets-block">
+      <div class="section-label" style="margin-bottom:8px;">Mercados objetivo</div>
+      <div class="market-item">
+        <span class="market-flag">🇺🇸🇨🇦</span>
+        <div class="market-info">
+          <div class="market-name">Norteamérica</div>
+          <div class="market-detail">Aventura + bienestar + autenticidad</div>
+        </div>
+      </div>
+      <div class="market-item">
+        <span class="market-flag">🇬🇧🇩🇪🇫🇷</span>
+        <div class="market-info">
+          <div class="market-name">Europa</div>
+          <div class="market-detail">Turismo consciente + cultura local</div>
+        </div>
+      </div>
+      <div class="market-item">
+        <span class="market-flag">🇧🇷</span>
+        <div class="market-info">
+          <div class="market-name">Brasil</div>
+          <div class="market-detail">Aventura multi-actividad + nieve</div>
+        </div>
+      </div>
+      <div class="market-item">
+        <span class="market-flag">🌎</span>
+        <div class="market-info">
+          <div class="market-name">Latinoamérica</div>
+          <div class="market-detail">Premium escapadas ciudad-montaña</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-block">
+      <div class="contact-label">Contacto comercial</div>
+      <div class="contact-line">
+        Red Maipo Aventura<br>
+        Cajón del Maipo, RM · Chile<br>
+        innoventures.cl
+      </div>
+    </div>
+  </div>
+
+  <!-- Columna derecha -->
+  <div class="back-right">
+
+    <div class="back-right-header">
+      <div>
+        <div class="back-right-header-title">Portafolio de Experiencias</div>
+        <div class="back-right-header-sub">Productos listos para operar · Temporada 2025–2026</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:9px; color:#999; text-transform:uppercase; letter-spacing:1px;">Comisión B2B</div>
+        <div style="font-family:'Barlow Condensed'; font-size:22px; font-weight:700; color:var(--ocre); line-height:1;">15–20%</div>
+      </div>
+    </div>
+
+    <!-- Grid iniciativas -->
+    <div class="initiatives-grid">
+
+      <!-- TIER 1 -->
+      <div class="initiative-card">
+        <div class="init-tier">⭐ Tier 1</div>
+        <div class="init-name">Full Day Maipo</div>
+        <div class="init-desc">Embalse El Yeso + Trekking + Almuerzo tradicional + Rafting opcional</div>
+        <div class="init-price">USD 90–140 / pax</div>
+      </div>
+
+      <div class="initiative-card">
+        <div class="init-tier">⭐ Tier 1</div>
+        <div class="init-name">Cabalgata con Sentido</div>
+        <div class="init-desc">3D/2N · Rancho El Añil → Ruco del Cura · asado, astronomía, spa y pisco sour al regreso</div>
+        <div class="init-price">USD 780 / pax</div>
+      </div>
+
+      <div class="initiative-card">
+        <div class="init-tier">⭐ Tier 1</div>
+        <div class="init-name">Tour Patrimonial</div>
+        <div class="init-desc">Tren trasandino, hospital histórico, patrimonio minero. Guía especializado</div>
+        <div class="init-price">USD 60–80 / pax</div>
+      </div>
+
+      <div class="initiative-card">
+        <div class="init-tier">⭐ Tier 1</div>
+        <div class="init-name">La Vida Outdoor 2D</div>
+        <div class="init-desc">Multi-actividad: trekking, escalada, rafting, termas + alojamiento boutique</div>
+        <div class="init-price">USD 420–480 / pax</div>
+      </div>
+
+      <div class="initiative-card">
+        <div class="init-tier">⭐ Tier 1</div>
+        <div class="init-name">Rollin Las Melosas</div>
+        <div class="init-desc">E-scooter / bici / longboard en ruta Las Melosas + paradas fotográficas curadas</div>
+        <div class="init-price">USD 80–100 / pax</div>
+      </div>
+
+      <!-- TIER 2 -->
+      <div class="initiative-card verde">
+        <div class="init-tier verde">✦ Tier 2</div>
+        <div class="init-name">Nieve para Todos + Vino</div>
+        <div class="init-desc">Raquetas andinas mañana + degustación Maipo tarde. Sin esquiar. Apto 65+ activos</div>
+        <div class="init-price verde">USD 180–200 / pax · (seniors: 220–240)</div>
+      </div>
+
+      <div class="initiative-card verde">
+        <div class="init-tier verde">✦ Tier 2</div>
+        <div class="init-name">Refugio Tupungato</div>
+        <div class="init-desc">Expedición 5D/4N alta montaña. Mulas cargan el equipo. Guía UIMLA certificado</div>
+        <div class="init-price verde">USD 800–1.200 / pax</div>
+      </div>
+
+      <div class="initiative-card verde">
+        <div class="init-tier verde">✦ Tier 2</div>
+        <div class="init-name">Cielos del Maipo</div>
+        <div class="init-desc">Telescopio 8"+, guía astronómico certificado + 3 vinos premium. Máx. 8 pax</div>
+        <div class="init-price verde">USD 200–400 / pax</div>
+      </div>
+
+      <div class="initiative-card verde">
+        <div class="init-tier verde">✦ Tier 2</div>
+        <div class="init-name">Full Maipo 3D</div>
+        <div class="init-desc">Experiencia inmersiva all-inclusive: aventura, cultura, gastronomía, astronomía</div>
+        <div class="init-price verde">USD 780–920 / pax</div>
+      </div>
+
+      <div class="initiative-card cielo">
+        <div class="init-tier cielo">◆ Tier 3</div>
+        <div class="init-name">ATV Sunset Tour</div>
+        <div class="init-desc">Cuatrimoto en golden hour + fotógrafo profesional. Fotos entregadas en 24 hrs</div>
+        <div class="init-price cielo">USD 100–130 / pax</div>
+      </div>
+
+      <div class="initiative-card cielo">
+        <div class="init-tier cielo">◆ Tier 3</div>
+        <div class="init-name">Cajón 2D Inmersivo</div>
+        <div class="init-desc">Embalse El Yeso + vinos Maipo + astronomía nocturna. All-inclusive 2D/1N</div>
+        <div class="init-price cielo">USD 500 / pax</div>
+      </div>
+
+      <div class="initiative-card acento">
+        <div class="init-tier acento">▲ Premium</div>
+        <div class="init-name">Andes Cold Therapy</div>
+        <div class="init-desc">Protocolo Wim Hof completo: 2 ciclos inmersión glaciar + sauna leña + brunch recovery. Máx. 6 pax</div>
+        <div class="init-price acento">USD 150–300 / pax</div>
+      </div>
+
+    </div>
+
+    <!-- Barra inferior comisiones -->
+    <div class="commission-bar">
+      <div class="comm-item">
+        <span class="comm-num">15–20%</span>
+        <span class="comm-label">Comisión agencia</span>
+      </div>
+      <div class="comm-divider"></div>
+      <div class="comm-item">
+        <span class="comm-num">4–12</span>
+        <span class="comm-label">Pax por grupo</span>
+      </div>
+      <div class="comm-divider"></div>
+      <div class="comm-item">
+        <span class="comm-num">ES · EN · PT</span>
+        <span class="comm-label">Idiomas disponibles</span>
+      </div>
+      <div class="comm-divider"></div>
+      <p class="comm-cta">
+        Disponible para <strong>ruedas de negocios, OTAs y acuerdos B2B directos</strong>. 
+        Solicite tarifario y material completo.
+      </p>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
